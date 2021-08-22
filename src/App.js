@@ -19,8 +19,9 @@ function App() {
         .then(res=> res.json())
         .then(res=>setItems(res)),[])
 
-    const onAddToCart = () => {
-        console.log('Нажали плюс')
+    const onAddToCart = (obj) => {
+        setCartItems(prev => [...prev,obj])
+        console.log(cartItems)
     }
 
     return (
@@ -41,7 +42,7 @@ function App() {
                     {items.map((item) => (
                         <Card title={item.name} price={item.price} imageUrl={item.imageUrl}
                               onFavorite={() => console.log('Добавили в закладки')}
-                              onPlus={(obj) => console.log(obj) }/>
+                              onPlus={(obj) => onAddToCart(obj) }/>
 
                     ))}
                 </div>
